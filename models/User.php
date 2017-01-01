@@ -86,4 +86,11 @@ class User extends Model
         });
     }
 
+    public function scopeWithRole($query, $filtered)
+    {
+        return $query->whereHas('roles', function($q) use ($filtered) {
+            $q->where('id', $filtered);
+        });
+    }
+
 }
